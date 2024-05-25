@@ -14,16 +14,18 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-
-        $this->call([
-            RoleSeeder::class,
-        ]);
+        $this->call([RoleSeeder::class]);
 
         \App\Models\User::factory()->create([
             'role_id'  => 1,
             'name'     => 'Admin ' . config('app.name'),
             'email'    => 'admin@example.com',
             'password' => Hash::make('laravel1'),
+        ]);
+
+        $this->call([
+            SupplierSeeder::class,
+            ItemSeeder::class,
         ]);
     }
 }

@@ -18,7 +18,7 @@ class UserController extends Controller
             'users' => User::all(),
         ];
 
-        return view('apps.users.user', $data);
+        return view('apps.users.users', $data);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
             'pageTitle' => 'Tambah Data User',
         ];
 
-        return view('apps.users.form', $data);
+        return view('apps.users.user-form', $data);
     }
 
     /**
@@ -76,7 +76,7 @@ class UserController extends Controller
             'pageTitle' => 'Edit Data User',
         ];
 
-        return view('apps.users.form', $data);
+        return view('apps.users.user-form', $data);
     }
 
     /**

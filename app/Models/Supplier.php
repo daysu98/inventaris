@@ -6,19 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Role extends Model
+class Supplier extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'name',
+        'phone',
+        'address',
     ];
 
     /**
-     * Get the users for the role.
+     * Get the items for the supplier.
      */
-    public function users(): HasMany
+    public function items(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Item::class);
     }
 }
