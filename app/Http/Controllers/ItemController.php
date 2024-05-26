@@ -124,4 +124,14 @@ class ItemController extends Controller
         $item->delete();
         return redirect('/items')->with('message', 'Data Berhasil Dihapus');
     }
+
+    /**
+     * Publish status.
+     */
+    public function publish(Item $item)
+    {
+        $item->update(['publish' => ($item->publish ? 0 : 1)]);
+
+        return redirect('/items')->with('message', 'Status berhasil diubah');
+    }
 }

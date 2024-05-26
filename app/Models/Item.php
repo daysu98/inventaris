@@ -19,6 +19,7 @@ class Item extends Model
         'supplier_id',
         'user_id',
         'slug',
+        'publish',
     ];
 
     /**

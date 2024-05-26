@@ -27,10 +27,10 @@ class UserController extends Controller
     public function create()
     {
         $data = [
-            'roles' => Role::all()->whereNotIn('id', [1]),
+            'roles'      => Role::all()->whereNotIn('id', [1]),
             'formMethod' => 'POST',
             'formAction' => route('users.store'),
-            'pageTitle' => 'Tambah Data User',
+            'pageTitle'  => 'Tambah Data User',
         ];
 
         return view('apps.users.user-form', $data);
@@ -42,10 +42,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'role_id' => ['required'],
-            'password' => ['required'],
+            'name'             => ['required'],
+            'email'            => ['required', 'email', 'unique:users,email'],
+            'role_id'          => ['required'],
+            'password'         => ['required'],
             'confirm_password' => ['required', 'same:password'],
         ]);
 
@@ -69,11 +69,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $data = [
-            'user' => $user,
-            'roles' => Role::all()->whereNotIn('id', [1]),
+            'user'       => $user,
+            'roles'      => Role::all()->whereNotIn('id', [1]),
             'formMethod' => 'PATCH',
             'formAction' => route('users.update', ['user' => $user->id]),
-            'pageTitle' => 'Edit Data User',
+            'pageTitle'  => 'Edit Data User',
         ];
 
         return view('apps.users.user-form', $data);
@@ -85,10 +85,10 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $credentials = $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'role_id' => 'nullable',
-            'password' => 'nullable',
+            'name'             => ['required'],
+            'email'            => ['required', 'email'],
+            'role_id'          => 'nullable',
+            'password'         => 'nullable',
             'confirm_password' => ['same:password'],
         ]);
 
@@ -96,7 +96,7 @@ class UserController extends Controller
         if ($credentials['password'] == null) {
             unset($credentials['password']);
         }
-        
+
         User::find($id)->update($credentials);
 
         return redirect('/users')->with('message', 'Data Berhasil Diubah');

@@ -248,8 +248,9 @@
                     <span class="hidden text-right lg:block">
                         <span class="block text-sm font-medium text-black dark:text-white">{{ auth()->user()->name }}</span>
                         <span class="block text-xs font-medium">{{ auth()->user()->email }}</span>
+                        <span class="opacity-75 block text-xs font-italic">({{ auth()->user()->role->name }})</span>
+                        
                     </span>
-
                     <span class="h-12 w-12 rounded-full">
                         <img src="{{ asset('assets/src/images/user/user-01.png') }}" alt="User" />
                     </span>

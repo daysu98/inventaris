@@ -13,7 +13,7 @@ class WelcomeController extends Controller
     public function welcome()
     {
         $data = [
-            'items' => Item::paginate(30),
+            'items' => Item::where('publish', 1)->paginate(30),
         ];
 
         return view('welcome', $data);

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('stock');
             $table->bigInteger('price');
+            $table->boolean('publish')->default(0);
             $table->timestamps();
         });
     }

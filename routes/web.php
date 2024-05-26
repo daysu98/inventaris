@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Items
     Route::resource('items', ItemController::class);
+    Route::patch('items/{item}/publish', [ItemController::class, 'publish'])->name('items.publish');
 });
 
 Route::middleware(['guest'])->group(function () {
